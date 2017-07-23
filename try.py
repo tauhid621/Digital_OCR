@@ -263,8 +263,8 @@ for i in range(len(words)):
 		cv2.rectangle(thresh_color,(x,y),(x+w,y+h),(0,255,0),1)
 
 	Word.getWord(currentChars)	
-	print " ",
-	
+	plt.imshow(img, cmap='gray')
+	plt.show()
 
 
 

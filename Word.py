@@ -65,13 +65,15 @@ for ch in chars:
 '''
 
 def getWord(chars):
+	word = []
 	for ch in chars:
 		ch = ~ch #inverting image
 		
 		ch = addPadding(ch)
 		fit = size(ch)
 		
-		print getCharacter.getChar(fit) ,
+		word.append(getCharacter.getChar(fit))
+	print  "".join(word),
 
 
 
