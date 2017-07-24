@@ -27,7 +27,10 @@ def getChar(ch):
 	theta2 = data['theta2'][:]
 	data.close()
 
+	#applying feature scaling
+	ch = ch / 255.0
 
+	
 	img = ch.flatten()
 	img = img.reshape((1, -1))
 	
