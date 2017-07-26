@@ -57,15 +57,21 @@ def chkprev(prev_x, prev_y, cur_x, cur_y):
 		return True
 	return False
 
+
+
+
+
 img = Image.open("img6.png")
 img = img.convert("L")	#convert the image to greyscale
 
+
 img = PIL.ImageOps.invert(img) #invert the image
-
-#plt.imshow(img, cmap='gray')
-#plt.show()
-
 img = np.asarray(img)
+
+
+
+
+print img.shape
 #plt.imshow(img, cmap='gray')
 #plt.show()
 
@@ -73,7 +79,7 @@ img = np.asarray(img)
 img = img.copy()
 y, x =  img.shape
 
-img[:,x-1] = 0 #for a single image
+
 original = img.copy()
 
 
@@ -107,13 +113,7 @@ while(i < y):
 		i = j - 1
 	i += 1
 
-'''
-#printing lines one by one
-for i in range(len(lines)):
-	tmp = lines[i]
-	plt.imshow(tmp, cmap='gray')
-	plt.show()
-'''
+
 
 #now individaual words by verticle line
 
@@ -144,13 +144,6 @@ for i in range(len(lines)):
 			en = nen
 
 	
-
-	'''
-	tmp = lines[i]
-	tmp = tmp[:,st:en]
-	plt.imshow(tmp, cmap='gray')
-	plt.show()
-	'''
 
 chars = []
 currentChars = []
@@ -186,14 +179,7 @@ for i in range(len(words)):
 	 
 	# Combine the two images to get the foreground.
 	im_out = thresh | im_floodfill_inv
-	'''
-	# Display images.
-	cv2.imshow("Thresholded Image", thresh)
-	cv2.imshow("Floodfilled Image", im_floodfill)
-	cv2.imshow("Inverted Floodfilled Image", im_floodfill_inv)
-	cv2.imshow("Foreground", im_out)
-	cv2.waitKey(0)
-	'''
+
 	orig_processsed = thresh
 	thresh = im_out
 
@@ -232,30 +218,9 @@ for i in range(len(words)):
 		test = whole[:y -1].sum()
 		
 		i, j = cut(whole)
-		#print i, j
-		'''
-		if(i > 2):
-			i -=2
-		j += 2
-'''
+
 		tmp = orig[i:j, x:x + w]
 		
-		'''
-		plt.imshow(tmp, cmap='gray')
-		plt.show()
-
-		
-		plt.imshow(whole, cmap='gray')
-		plt.show()
-		
-		
-		
-		
-		plt.imshow(process, cmap='gray')
-		plt.show()
-		'''
-
-		#check
 		
 		chars.append(tmp)
 		currentChars.append(tmp)
@@ -264,47 +229,3 @@ for i in range(len(words)):
 
 	Word.getWord(currentChars)	
 	print " ",
-	
-
-
-
-'''
-for i in range(len(words)):
-	chars = []
-
-	wrd = words[i]
-
-	y, x = wrd.shape
-	plt.imshow(wrd, cmap='gray')
-	plt.show()
-
-	st = 0
-	en = 1
-	sum = 0.0
-
-	flag = False;
-
-	for i in range(x):
-		for j in range(y):
-			sum += wrd[j][i]/255.0
-		en = i
-		if((sum < 1.5) & flag):
-			
-			chars.append(wrd[:,st:en])
-			st = en + 1
-			flag = False
-		elif(sum > 2.5):
-			flag = True
-		sum = 0
-	if(st + 3 < en):
-		chars.append(wrd[:,st:en])
-	print len(chars)
-
-
-	for i in range(len(chars)):
-		tmp = chars[i]
-		plt.imshow(tmp, cmap='gray')
-		plt.show()
-'''
-
-
